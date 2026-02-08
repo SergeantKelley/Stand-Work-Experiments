@@ -1,0 +1,56 @@
+ /*
+  Заголовок пакета Motion
+*/
+/*
+  Зависимости заголовка пакета Motion
+*/
+
+
+RTS_PACKAGE_HEADER_BEGIN(SUPK_SUVSH)
+
+  /*
+    Описание прототипа
+  */
+
+RTS_TESTCOMP_BEGIN(SUPK_SUVSH)
+
+    /* Joystick Experimental Plugin RTS-vars */
+    RTS_PROPERTY(plugin_JOYSTICK_ROLL, "описание", "джойстик ось крена")
+    RTS_PROPERTY(plugin_JOYSTICK_ROLL, "событийность", true)
+    RTS_INPUT_PARAM(plugin_JOYSTICK_ROLL, float)
+
+    RTS_PROPERTY(plugin_JOYSTICK_PITCH, "описание", "джойстик ось тангажа")
+    RTS_PROPERTY(plugin_JOYSTICK_PITCH, "событийность", true)
+    RTS_INPUT_PARAM(plugin_JOYSTICK_PITCH, float)
+
+    RTS_PROPERTY(plugin_JOYSTICK_YAW, "описание", "джойстик ось рысканья")
+    RTS_PROPERTY(plugin_JOYSTICK_YAW, "событийность", true)
+    RTS_INPUT_PARAM(plugin_JOYSTICK_YAW, float)
+
+    RTS_PROPERTY(plugin_JOYSTICK_THROTTLE, "описание", "джойстик NWS")
+    RTS_PROPERTY(plugin_JOYSTICK_THROTTLE, "событийность", true)
+    RTS_INPUT_PARAM(plugin_JOYSTICK_THROTTLE, float)
+
+    RTS_PROPERTY(plugin_JOYSTICK_BUTTONS, "описание", "джойстик кнопки")
+    RTS_PROPERTY(plugin_JOYSTICK_BUTTONS, "событийность", true)
+    RTS_INPUT_PARAM(plugin_JOYSTICK_BUTTONS, uint32)
+   
+    // Joystick events...
+    RTS_CONDITION(wp, NWS_JOYSTICK_ROLL_UPDT, Update, plugin_JOYSTICK_ROLL)
+    RTS_CONDITION(wp, NWS_JOYSTICK_PITCH_UPDT, Update, plugin_JOYSTICK_PITCH)
+    RTS_CONDITION(wp, NWS_JOYSTICK_THROTTLE_UPDT, Update, plugin_JOYSTICK_THROTTLE)
+    RTS_CONDITION(wp, NWS_JOYSTICK_BUTTONS_UPDT, Update, plugin_JOYSTICK_BUTTONS)
+    RTS_CONDITION(wp, NWS_JOYSTICK_YAW_UPDT, Update, plugin_JOYSTICK_YAW)
+
+    // other joystick-related things...		
+    bool NWSflag = false;
+    bool flagHandle = false;
+    bool flagGearsUpDown = false;
+    
+
+
+  /*
+    Конец описания прототипа
+  */
+  RTS_TESTCOMP_END()
+RTS_PACKAGE_HEADER_END()

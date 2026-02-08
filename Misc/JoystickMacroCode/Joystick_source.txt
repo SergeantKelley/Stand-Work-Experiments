@@ -1,0 +1,167 @@
+/*
+  Тело пакета 
+*/
+/*
+  Зависимости тела пакета 
+*/
+
+
+/*
+  Начало описания тела пакета
+*/
+RTS_PACKAGE_BODY_BEGIN(SUPK_SUVSH)
+
+  /*
+    Описание основного цикла работы модели
+  */
+  RTS_MAIN_BEGIN()
+
+	
+	while (1) 
+        {
+		RTS_WAIT(wp)
+		{			
+			// Joystick taxing handlers 
+			RTS_CASE(NWS_JOYSTICK_ROLL_UPDT):
+
+ 		        	if(not flagHandle)
+				{
+					CH1_CPHW_RVDT_1_SIN = sh.sinus / 2.12f;
+					CH1_CPHW_RVDT_1_COS = sh.cosinus / 2.12f;
+
+					CH1_CPHW_RVDT_1_SIN_PHASE = sh.sin_phase;
+					CH1_CPHW_RVDT_1_COS_PHASE = sh.cos_phase;
+		
+	               			CH2_CPHW_RVDT_1_SIN = sh.sinus / 2.12f;
+					CH2_CPHW_RVDT_1_COS = sh.cosinus / 2.12f;
+
+					CH2_CPHW_RVDT_1_SIN_PHASE = sh.sin_phase;
+					CH2_CPHW_RVDT_1_COS_PHASE = sh.cos_phase;
+
+				 
+					CH1_PHW_RVDT_1_COS 	 = sh.cosinus / 2.12f;
+					CH1_PHW_RVDT_1_COS_PHASE = sh.cos_phase;
+
+					CH1_PHW_RVDT_1_SIN 	 = sh.sinus / 2.12f;
+					CH1_PHW_RVDT_1_SIN_PHASE = sh.sin_phase;
+					 
+					CH2_PHW_RVDT_1_COS 	 = sh.cosinus / 2.12f;
+					CH2_PHW_RVDT_1_COS_PHASE = sh.cos_phase;
+				
+					CH2_PHW_RVDT_1_SIN 	 = sh.sinus / 2.12f;
+					CH2_PHW_RVDT_1_SIN_PHASE = sh.sin_phase;
+				}
+				else
+				{
+					CH1_CPHW_RVDT_2_SIN = sh.sinus / 2.12f;
+					CH1_CPHW_RVDT_2_COS = sh.cosinus / 2.12f;
+
+					CH1_CPHW_RVDT_2_SIN_PHASE = sh.sin_phase;
+					CH1_CPHW_RVDT_2_COS_PHASE = sh.cos_phase;				
+
+					CH2_CPHW_RVDT_2_SIN = sh.sinus / 2.12f;
+					CH2_CPHW_RVDT_2_COS = sh.cosinus / 2.12f;
+
+					CH2_CPHW_RVDT_2_SIN_PHASE = sh.sin_phase;
+					CH2_CPHW_RVDT_2_COS_PHASE = sh.cos_phase;
+
+					 
+					CH1_PHW_RVDT_2_COS = sh.cosinus / 2.12f;
+					CH1_PHW_RVDT_2_COS_PHASE = sh.cos_phase;
+					CH1_PHW_RVDT_2_SIN = sh.sinus / 2.12f;
+					CH1_PHW_RVDT_2_SIN_PHASE = sh.sin_phase;
+					 
+					CH2_PHW_RVDT_2_COS = sh.cosinus / 2.12f;
+					CH2_PHW_RVDT_2_COS_PHASE = sh.cos_phase;
+					CH2_PHW_RVDT_2_SIN = sh.sinus / 2.12f;
+					CH2_PHW_RVDT_2_SIN_PHASE = sh.sin_phase;
+				}
+
+				setHandlerAngle(plugin_JOYSTICK_ROLL * 65.0f, sh);
+			break;
+			// Pitch angle (pedals control)
+			RTS_CASE(NWS_JOYSTICK_PITCH_UPDT):
+				fcs_l_CH1_X_DN_4 = 75.0f * plugin_JOYSTICK_PITCH;
+				fcs_l_CH2_X_DN_4 = 75.0f * plugin_JOYSTICK_PITCH;
+				fcs_r_CH1_X_DN_4 = 75.0f * plugin_JOYSTICK_PITCH;
+				fcs_r_CH2_X_DN_4 = 75.0f * plugin_JOYSTICK_PITCH;
+			break;
+			// 4th axe to control ground speed
+			RTS_CASE(NWS_JOYSTICK_THROTTLE_UPDT):
+				gpdb_CH2_IRS1_312_ground_speed1 = 100.0f * plugin_JOYSTICK_THROTTLE;
+				gpdb_CH2_IRS2_312_ground_speed2 = 100.0f * plugin_JOYSTICK_THROTTLE;
+				gpdb_CH2_IRS3_312_ground_speed3 = 100.0f * plugin_JOYSTICK_THROTTLE;
+
+				gpdb_CH1_IRS1_312_ground_speed1 = 100.0f * plugin_JOYSTICK_THROTTLE;
+				gpdb_CH1_IRS2_312_ground_speed2 = 100.0f * plugin_JOYSTICK_THROTTLE;
+				gpdb_CH1_IRS3_312_ground_speed3 = 100.0f * plugin_JOYSTICK_THROTTLE;
+			break;
+			// Yaw angle
+			RTS_CASE(NWS_JOYSTICK_YAW_UPDT):
+				if(plugin_JOYSTICK_YAW >= 0.9f && gpdb_CH2_IRS1_312_ground_speed1 == 100.0f)
+				{
+					NG_WOW_1  = 10.0f;	
+					NG_WOW_2  = 10.0f;	
+				}
+				if(plugin_JOYSTICK_YAW < 0.9f && gpdb_CH2_IRS1_312_ground_speed1 < 80.0f)
+				{
+					NG_WOW_1  = 2.0f;	
+					NG_WOW_2  = 2.0f;
+				}
+			break;
+			// Some buttons 
+			RTS_CASE(NWS_JOYSTICK_BUTTONS_UPDT):
+			if(plugin_JOYSTICK_BUTTONS == 1 && not NWSflag)
+			{
+			  CH1_NWS_ARM 	 = 1;
+			  CH1_NWS_DISARM = 0;
+			  CH2_NWS_ARM 	 = 1;
+			  CH2_NWS_DISARM = 0;
+			  NWSflag = true;
+			}
+			else if(plugin_JOYSTICK_BUTTONS == 1 && NWSflag)
+			{
+			  CH1_NWS_ARM 	 = 0;
+			  CH1_NWS_DISARM = 1;
+			  CH2_NWS_ARM 	 = 0;
+			  CH2_NWS_DISARM = 1;
+			  NWSflag = false;
+			}
+			// Switching handles
+			if(plugin_JOYSTICK_BUTTONS == 256 && not flagHandle)
+			{
+				flagHandle = true;
+			}
+			else if(plugin_JOYSTICK_BUTTONS == 256 && flagHandle)
+			{
+				flagHandle = false;
+			}
+			// Gears up & down
+			if(plugin_JOYSTICK_BUTTONS == 65536 && not flagGearsUpDown)
+			{
+				CH1_HNDL_DN = 0;
+				CH1_HNDL_UP = 1;
+				CH2_HNDL_DN = 0;
+				CH2_HNDL_UP = 1;
+				flagGearsUpDown = true;
+			}
+			else if(plugin_JOYSTICK_BUTTONS == 65536 && flagGearsUpDown)
+			{
+				CH1_HNDL_DN = 1;
+				CH1_HNDL_UP = 0;
+				CH2_HNDL_DN = 1;
+				CH2_HNDL_UP = 0;
+				flagGearsUpDown = false;
+			}
+			break;
+
+			
+		}
+	}
+
+  RTS_MAIN_END()
+
+/*
+  Конец описания тела пакета
+*/
+RTS_PACKAGE_BODY_END()

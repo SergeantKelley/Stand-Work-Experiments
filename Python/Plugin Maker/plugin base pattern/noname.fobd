@@ -1,0 +1,10 @@
+(buffers
+
+ (subsystem "NoName")
+ (origin "oper_vis")
+ (version "Plugin name:NoName")
+
+ (buffer main	 
+
+ ) 
+)

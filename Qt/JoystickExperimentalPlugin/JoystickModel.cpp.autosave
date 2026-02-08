@@ -1,0 +1,83 @@
+#include "JoystickModel.h"
+
+JoystickModel::JoystickModel(JoystickExperimentalPlugin * plugin, QObject *parent) : QObject(parent)
+{
+    _plugin = plugin;
+}
+
+float JoystickModel::JOYSTICK_YAW() const
+{
+    return _JOYSTICK_YAW;
+}
+
+float JoystickModel::JOYSTICK_PITCH() const
+{
+    return _JOYSTICK_PITCH;
+}
+
+float JoystickModel::JOYSTICK_ROLL() const
+{
+    return _JOYSTICK_ROLL;
+}
+
+unsigned JoystickModel::JOYSTICK_NWS() const
+{
+    return _JOYSTICK_NWS;
+}
+
+float JoystickModel::JOYSTICK_THROTTLE() const
+{
+    return _JOYSTICK_THROTTLE;
+}
+
+unsigned JoystickModel::JOYSTICK_BUTTONS() const
+{
+    return _JOYSTICK_BUTTONS;
+}
+
+void JoystickModel::setJOYSTICK_YAW(float JOYSTICK_YAW)
+{
+        if (_JOYSTICK_YAW == JOYSTICK_YAW) return;
+        _JOYSTICK_YAW = JOYSTICK_YAW;
+        _plugin->setYawAxe(_JOYSTICK_YAW);
+        emit JOYSTICK_YAWChanged(JOYSTICK_YAW);
+}
+
+void JoystickModel::setJOYSTICK_PITCH(float JOYSTICK_PITCH)
+{
+        if (_JOYSTICK_PITCH == JOYSTICK_PITCH) return;
+        _JOYSTICK_PITCH = JOYSTICK_PITCH;
+        _plugin->setPitchAxe(_JOYSTICK_PITCH);
+        emit JOYSTICK_PITCHChanged(JOYSTICK_PITCH);
+}
+
+void JoystickModel::setJOYSTICK_ROLL(float JOYSTICK_ROLL)
+{
+        if (_JOYSTICK_ROLL == JOYSTICK_ROLL) return;
+        _JOYSTICK_ROLL = JOYSTICK_ROLL;
+        _plugin->setRollAxe(_JOYSTICK_ROLL);
+        emit JOYSTICK_ROLLChanged(JOYSTICK_ROLL);
+}
+
+void JoystickModel::setJOYSTICK_NWS(unsigned JOYSTICK_NWS)
+{
+        if (_JOYSTICK_NWS == JOYSTICK_NWS) return;
+        _JOYSTICK_NWS = JOYSTICK_NWS;
+        emit JOYSTICK_NWSChanged(JOYSTICK_NWS);
+}
+
+void JoystickModel::setJOYSTICK_THROTTLE(float JOYSTICK_THROTTLE)
+{
+        if (_JOYSTICK_THROTTLE == JOYSTICK_THROTTLE) return;
+        _JOYSTICK_THROTTLE = JOYSTICK_THROTTLE;
+        _plugin->setThrottleAxe(_JOYSTICK_THROTTLE);
+        emit JOYSTICK_THROTTLEChanged(JOYSTICK_THROTTLE);
+}
+
+void JoystickModel::setJOYSTICK_BUTTONS(unsigned JOYSTICK_BUTTON)
+{
+        if (_JOYSTICK_BUTTONS == JOYSTICK_BUTTON) return;
+        _JOYSTICK_BUTTONS = JOYSTICK_BUTTON;
+        _plugin->setJoystickButtons(_JOYSTICK_BUTTONS);
+        emit JOYSTICK_BUTTONSChanged(JOYSTICK_BUTTON);
+}

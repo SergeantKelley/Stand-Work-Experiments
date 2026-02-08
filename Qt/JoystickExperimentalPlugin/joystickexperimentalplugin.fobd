@@ -1,0 +1,15 @@
+(buffers
+
+ (subsystem "JoystickExperimentalPlugin")
+ (origin "oper_vis")
+ (version "Plugin name:JoystickExperimentalPlugin")
+
+ (buffer main	 
+	(param JOYSTICK_ROLL float "джойстик ось крена")
+	(param JOYSTICK_PITCH float "джойстик ось тангажа")
+	(param JOYSTICK_YAW float "джойстик ось рысканья")
+	(param JOYSTICK_THROTTLE float "джойстик ось газа")
+	(param JOYSTICK_NWS uint8 "джойстик NWS (не используется)")
+	(param JOYSTICK_BUTTONS uint32 "кнопки джойстика")
+ ) 
+)
