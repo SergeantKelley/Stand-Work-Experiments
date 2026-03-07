@@ -1,0 +1,11 @@
+(buffers
+
+ (subsystem "StandPluginSample")
+ (origin "oper_vis")
+ (version "Plugin name:StandPluginSample")
+
+ (buffer main	 
+	(param PARAM_STAND_IN   int32 "параметр стенд -> плагин")
+	(param PARAM_STAND_OUT  int32 "параметр плагин -> стенд")
+ ) 
+)
