@@ -51,7 +51,6 @@ public:
     int PARAMETER_OUT() const;
 
 private:
-    Form * _form                = nullptr;
     Controller * _controller    = nullptr;
     int _PARAMETER_IN           = 0;
     int _PARAMETER_OUT          = 0;
