@@ -1,0 +1,10 @@
+(buffers
+
+ (subsystem "glfw3PluginSample")
+ (origin "oper_vis")
+ (version "Plugin name:glfw3PluginSample")
+
+ (buffer main	 
+
+ ) 
+)

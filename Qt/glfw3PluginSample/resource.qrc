@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icon1.png</file>
+    </qresource>
+    <qresource prefix="/shaders">
+        <file>vertShader.glsl</file>
+        <file>fragShader.glsl</file>
+    </qresource>
+</RCC>
