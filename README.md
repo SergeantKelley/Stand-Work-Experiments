@@ -28,5 +28,10 @@ Qt cpp experimental plugin project for additional controlling test-bench softwar
 Minimal qt cpp project that implements architecture design pattern similar to MVC or MVP patterns. This is a sample project.
 The general idea is to separate visual GUI representation and application logic. It gives a pretty good code modularity and readability and also allows easily connect and disconnect user-defined GUI
 
+### glfw3 Plugin Sample
+This is a starting experimental template Qt project which allows to visualize simulation states in 3D scene using openGL 3.3 profile, glfw3 and glm libs.
+In order to communicate with the hard real-time context a couple params were created. Thus two-way logical connection is provided.
+The project is intended for redlab-E avionics test-bench systems.
+
 
 Enjoy :-)
