@@ -1,3 +1,4 @@
+
 # Stand-Work-Experiments
 
 This repository contains some of my successful experiments for Redlab-I testbench harware using Qt creator and Python.
@@ -43,6 +44,9 @@ DESTDIR = /home/student/.oper_vis/plugins/
 
 change "student" to your system login name. It allows you copying just after project building, automagically
 
+If all is done correctly, you will see a scene similar to that:
 
+<img width="835" height="655" alt="2026-04-08_15-00" src="https://github.com/user-attachments/assets/e2e0040a-0421-434d-8451-e8abc25d1ac4" />
 
+ 
 Enjoy :-)
