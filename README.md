@@ -33,5 +33,16 @@ This is a starting experimental template Qt project which allows to visualize si
 In order to communicate with the hard real-time context a couple params were created. Thus two-way logical connection is provided.
 The project is intended for redlab-E avionics test-bench systems.
 
+#### Usage instructions
+In order to start an experiment in conjuction with the qt extended plugin you need first to copy "Shaders" folder to the following path:
+"/home/student/.oper_vis/plugins/" on your test-bench system
+
+After that you may need to modify the following string in the Qt .pro file:
+
+DESTDIR = /home/student/.oper_vis/plugins/
+
+change "student" to your system login name. It allows you copying just after project building, automagically
+
+
 
 Enjoy :-)
